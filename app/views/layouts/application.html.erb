@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Iceland Events</title>
+    <%= favicon_link_tag 'icon.png' %>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  </head>
+
+  <body>
+
+  <div>
+    <%= render 'partials/header'%>
+  </div>
+
+  <% if logged_in? %>
+      <div>
+        <%= render 'partials/nav_user'%>
+      </div>
+
+  <% else %>
+      <div>
+        <%= render 'partials/nav'%>
+      </div>
+  <% end %>
+
+
+  <div class="container mainVeiw">
+    <%= yield %>
+  </div>
+
+  <div>
+    <%= render 'partials/footer'%>
+  </div>
+
+
+  </body>
+</html>

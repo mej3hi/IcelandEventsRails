@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-sm-6 col-md-8 col-md-offset-2">
+    <h1 class="text-center login-title">Edit Event</h1>
+    <div class="wall">
+
+      <%= form_for :events , url: my_events_update_path, method: :patch ,html: {class: 'form-signin'} do |f| %>
+        <%= render 'partials/error_messages', error_msg: @events %>
+        <div class="row">
+
+          <div class=" col-md-6 ">
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name ,class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class=" col-md-6 ">
+            <div class="form-group">
+              <%= f.label :location %>
+              <%= f.text_field :location ,class: 'form-control' %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class=" col-md-6 ">
+            <div class="form-group imgInline">
+              <%= f.label :imageurl %>
+              <%= f.file_field :imageurl ,id: 'imgInp', accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
+              <%= f.hidden_field :imageurl_cache %>
+
+              <div id="imgError" class="conf hidden">
+                <p id="imgErrorMsg"></p>
+                <p id="imgErrorOk" class="btn btn-default">Ok<p>
+              </div>
+
+              <div class="conImg">
+                <% if @events.imageurl? %>
+                  <%= image_tag(@events.imageurl_url, id: 'imgEvent') %>
+                <% else %>
+                  <%= image_tag('icon_picture.png', id: 'imgEvent') %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class=" col-md-6 ">
+            <div class="form-group" >
+              <%= f.label :description %>
+              <%= f.text_area :description ,class: 'form-control' ,rows: 9%>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class=" col-md-6 ">
+            <div class="form-group">
+              <%= f.label :time %>
+              <div class="bootstrap-timepicker">
+                <%= f.text_field :time , value: format_time(@events.time),class: 'form-control', id: 'timepicker1' %>
+              </div>
+            </div>
+          </div>
+
+          <div class=" col-md-6 ">
+            <div class="form-group">
+              <%= f.label :date %>
+              <%= f.text_field :date, value: format_date(@events.date) ,class: 'form-control', id: 'datepicker' %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class=" col-md-12 ">
+            <div class="form-group">
+              <div>
+                <%= f.label :musicgenres, class: 'control-label'%>
+              </div>
+              <label class="radio-inline">
+                <%= f.radio_button :musicgenres, 'Other' %>Other
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button :musicgenres, 'Rock' %>Rock
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button :musicgenres, 'Pop' %>Pop
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button :musicgenres, 'Jazz' %>Jazz
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class=" col-md-6 col-md-offset-3">
+            <%= f.submit 'Edit Event', class: 'btn btn-lg gray-btn btn-block' %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

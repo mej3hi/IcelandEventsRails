@@ -1,0 +1,66 @@
+
+<div class="row eventrow">
+  <% if @events.empty? %>
+    <h5>No Events</h5>
+  <% else %>
+    <% @events.each do |event| %>
+      <div class="col-md-offset-3 col-md-6" >
+        <div class= "event">
+          <div class="row">
+
+            <div class="col-md-6">
+              <h4 id="eventname" ><%= event.name %></h4>
+            </div>
+            <div class="col-md-6">
+              <h4 id="eventlocation" ><%= event.location %></h4>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="conImg">
+                <%= image_tag event.imageurl.url, id: 'imgEvent' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p id="eventdescription" ><%= event.description %></p>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <h5 id="eventtime" ><%= format_time(event.time) %></h5>
+              <h5 id="eventdata" ><%= format_date(event.date) %></h5>
+            </div>
+            <div class="col-md-6">
+              <label>Music type : </label>
+              <p id="eventgenres" ><%= event.musicgenres %></p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row btn-margin">
+
+          <div class="col-md-3">
+            <%= link_to 'Edit', my_events_edit_path(event), role:'button', class: 'btn btn-warning btn-block' %>
+          </div>
+          <div class="col-md-3">
+            <button id="<%= event.id %>" class= "romoveBtn btn btn-danger btn-block">Remove</button>
+          </div>
+
+          <div id="<%= event.id %>" class="conf hidden">
+            <p>Are you sure you want to remove event</p>
+            <%= link_to 'Yes', my_event_remove_path(event), method: :delete, role:'button', class: 'btn btn-default yesBtn' %>
+            <button id="<%= event.id %>" class="noBtn btn btn-default">No</button>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

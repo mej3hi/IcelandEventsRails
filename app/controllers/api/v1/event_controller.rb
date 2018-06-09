@@ -1,62 +1,62 @@
-class Api::EventController < Api::ApiController
+class Api::V1::EventController < Api::V1::ApiController
+
+  skip_before_action :authenticate_request, only: [:index, :calender]
 
   def index
-    render json: Event.take(6)
-    end
 
-  def my_events
-    @events = current_user.event
+    # Nota AMS (serializers/event_serializer)
+    render json: Event.take(6)
+
+    #----leið 2 með jbuilder ( views/api/v1/event/index )
+    #@Events = Event.take(6)
+    #render "index.json.jbuilder"
+
+    #-------------leið 1 án jbuilder og AMS (methods eru í event.rb)
+    #render json: Event.take(6).as_json(except: [:imageurl,:time,:created_at,:updated_at],
+                                                #methods: [:image_url_path, :format_time])
+
   end
 
-  def edit
-    @events = current_user.event.find_by(id: params[:id])
+  def my_events
+    render json: current_user.event
   end
 
   def update
-    #render plain: params.inspect
-    @events = current_user.event.find_by(id: params[:id])
-    if @events.update(event_params)
-      redirect_to my_events_url
+    event = current_user.event.find_by(id: params[:id])
+    if event.update(event_params)
+      render status: 200, json: 'Successfully updated'.to_json
     else
-      render 'edit'
+      render status: 422, json: { errors: event.errors }
     end
   end
 
-  def new
-    @events = Event.new
-  end
-
   def create
-    @events = current_user.event.build(event_params)
-    if @events.save
-      redirect_to my_events_url
+    event = current_user.event.build(event_params)
+    if event.save
+      render status: 200, json: 'Successfully create'.to_json
     else
-      render 'new'
+      render status: 422, json: { errors: event.errors }
     end
   end
 
   def destroy
-    @events = current_user.event.find_by(id: params[:id])
-    @events.destroy
-    @events.remove_imageurl!
-    redirect_to my_events_url
+    event = current_user.event.find_by(id: params[:id])
+    event.destroy
+    event.remove_imageurl!
+    render status: 200, json: 'Successfully remove'.to_json
   end
 
   def calender
-    @events = Event.where(data: params[:day])
-    @date_now = params[:day]
-    render 'index'
+    events = Event.where(date: params[:day])
+    render json: events
   end
 
   private
 
   def event_params
-    params.require(:events).permit(:name, :location, :data, :time,
-                                   :description, :musicgenres, :imageurl, :imageurl_cache)
+    params.require(:event).permit(:name, :location, :date, :time,
+                                   :description, :musicgenres, :imageurl)
   end
-
-
-
 
 
 end

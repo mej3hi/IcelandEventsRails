@@ -1,0 +1,15 @@
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Forgot password</h1>
+    <%= form_for(:password_reset, url: password_resets_create_path) do |f| %>
+        <%= render 'partials/error_messages', error_msg: @user %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <%= f.submit 'Submit', class: 'btn gray-btn' %>
+    <% end %>
+  </div>
+</div>
