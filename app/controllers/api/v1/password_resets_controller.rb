@@ -1,0 +1,3 @@
+
+class PasswordResetsController
+end
