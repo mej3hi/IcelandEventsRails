@@ -15,14 +15,11 @@ Hægt er að hala niður forritinu á þessari síðu (clone or download). Í m�
 
 ![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER1.png)
 
+![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER2.png)
 
-![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER2.PNG)
+![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER3.png
 
-
-![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER3.PNG)
-
-
-![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER4.PNG)
+![Alt tag](https://raw.githubusercontent.com/mej3hi/screenshot/master/myndIER4.png)
 
 ### Höfundar
 Martin Einar Jensen  
