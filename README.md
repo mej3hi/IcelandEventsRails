@@ -9,7 +9,7 @@ Forritið er búið til í Ruby on rails og því þarf að hafa það sett upp 
 Ef maður þarf að fá nýtt lykilorð þá kemur email-ið fram í console með slóð til að búa nýtt lykilorð.
 
 ### Setja upp
-Hægt er að hala niður forritinu á þessari síðu (clone or download). Í möppuni fylgi icelandevents.sql skrá sem er með tilbúnir gögn fyrir MySql sem er hægt import beint. Í skráinn eru tilbúnir tónleikar og notandi sem hefur Email sem user_email@gmail.com og password sem 12345678 til að geta logga sig inn á vefsíðuna.
+Hægt er að hala niður forritinu á þessari síðu (clone or download). Í möppuni fylgi icelandevents.sql skrá sem er með tilbúnir gögn fyrir MySql sem er hægt import beint. Í skráinn eru tilbúnir tónleikar og notandi sem hefur email sem user_email@gmail.com og password sem 12345678 til að geta logga sig inn á vefsíðuna.
 
 ### Myndir
 
