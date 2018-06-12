@@ -34,8 +34,8 @@ class User < ApplicationRecord
   end
 
   def create_reset_digest
-    #self.reset_token = User.new_token
-    self.reset_token = "12345678"
+    self.reset_token = User.new_token
+    #self.reset_token = "12345678"
     update_attribute(:reset_digest, User.digest(reset_token))
     update_attribute(:reset_sent_at, Time.zone.now)
   end

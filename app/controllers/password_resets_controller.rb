@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   before_action :check_expiration, only: [:edit, :update]
 
   def new
+    @user = User.new
   end
 
   def create
@@ -14,7 +15,7 @@ class PasswordResetsController < ApplicationController
       redirect_to root_url
     else
       @user = User.new
-      @user.errors.add(:email, 'invalid email')
+      @user.errors.add(:email, 'Invalid email')
       render 'new'
     end
 
@@ -55,7 +56,8 @@ class PasswordResetsController < ApplicationController
 
   def check_expiration
     if @user.password_reset_expired?
-      redirect_to password_resets_create_url
+      @user.errors.add(:Expired, 'Password reset has expired.')
+      render 'new'
     end
   end
 
